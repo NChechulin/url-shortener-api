@@ -37,3 +37,8 @@ pattern = re.compile(regex)
 def validate_url(user_input):
     """returns true if is correct"""
     return pattern.match(user_input) is not None
+
+
+def validate_code(code, url):
+    """returns true if code is not busy or url was shortened earlier"""
+    pass
