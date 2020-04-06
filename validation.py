@@ -37,10 +37,9 @@ pattern = re.compile(regex)
 
 def validate_url(user_input):
     """returns true if is correct"""
-    return pattern.match(user_input) is not None
+    return (user_input is not None) and (pattern.match(user_input) is not None)
 
 
 def validate_code(code):
     """returns true if code is not busy"""
-    result = db.get_url(code)
-    return result is None
+    return (code is not None) and (db.get_url(code) is None)
