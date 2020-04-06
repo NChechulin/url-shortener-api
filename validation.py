@@ -1,6 +1,7 @@
 """Validation of URLs and shortened codes"""
 
 import re
+import db
 
 ip_middle_octet = u"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5]))"
 ip_last_octet = u"(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))"
@@ -39,6 +40,7 @@ def validate_url(user_input):
     return pattern.match(user_input) is not None
 
 
-def validate_code(code, url):
+def validate_code(code):
     """returns true if code is not busy"""
-    pass
+    result = db.get_url(code)
+    return result is None
