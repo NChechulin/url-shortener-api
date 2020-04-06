@@ -28,7 +28,12 @@ def get_url(code):
             cursor = conn.cursor()
             cursor.execute(command, (code,))
 
-            return cursor.fetchone()[0]
+            result = cursor.fetchone()
+
+            if result is None:
+                return None
+
+            return result[0]
     except Exception as e:
         print(f"Got exception: {e}")
 
