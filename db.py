@@ -36,6 +36,7 @@ def get_url(code):
             return result[0]
     except Exception as e:
         print(f"Got exception: {e}")
+        return None
 
 
 def add_url(code, url):
@@ -45,5 +46,7 @@ def add_url(code, url):
         with sqlite3.connect('urls.db') as conn:
             cursor = conn.cursor()
             cursor.execute(command, (code, url))
+        return True
     except Exception as e:
         print(f"Got exception: {e}")
+        return None
