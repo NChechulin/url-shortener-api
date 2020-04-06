@@ -9,27 +9,18 @@ app = Flask(__name__)
 @app.route("/api/get_url", methods=['GET'])
 def get_url():
     response = {}
-    try:
-        code = request.args.get('code')
+    
+    code = request.args.get('code')
+    url = db.get_url(code)
 
-        if code is None:
-            raise Exception('code not specified')
-
-        url = db.get_url(code)
-
-        if url is None:
-            response['success'] = False
-            response['message'] = 'code could not be found'
-        else:
-            response['success'] = True
-            response['message'] = 'success'
-            response['url'] = url
-
-        return dumps(response)
-    except Exception as e:
-        print(e)
+    if url is None:
         response['success'] = False
-        response['message'] = 'code not specified'
+        response['message'] = 'code could not be found'
+        return dumps(response)
+
+    response['success'] = True
+    response['message'] = 'success'
+    response['url'] = url
 
     return dumps(response)
 
