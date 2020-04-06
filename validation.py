@@ -40,5 +40,5 @@ def validate_url(user_input):
 
 
 def validate_code(code, url):
-    """returns true if code is not busy or url was shortened earlier"""
+    """returns true if code is not busy"""
     pass
