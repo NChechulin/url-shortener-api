@@ -37,9 +37,11 @@ pattern = re.compile(regex)
 
 def validate_url(user_input):
     """returns true if is correct"""
+    user_input = user_input.strip()
     return (user_input is not None) and (pattern.match(user_input) is not None)
 
 
 def validate_code(code):
     """returns true if code is not busy"""
+    code = code.strip()
     return (code is not None) and (db.get_url(code) is None)
