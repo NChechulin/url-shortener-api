@@ -7,11 +7,13 @@ def __check_table_exists():
         raise Exception("Error: There's no urls.db file")
 
     command = """
-        CREATE TABLE URLS(
-        short VARCHAR(16) PRIMARY KEY,
-        full TEXT	NOT NULL
-        );
-        """
+    CREATE TABLE "URLS" (
+	"short"	VARCHAR(16) UNIQUE,
+	"full"	TEXT NOT NULL UNIQUE,
+	PRIMARY KEY("short")
+    )
+    """
+
     with sqlite3.connect('urls.db') as conn:
         cursor = conn.cursor()
         try:
@@ -47,6 +49,26 @@ def add_url(code, url):
             cursor = conn.cursor()
             cursor.execute(command, (code, url))
         return True
+    except Exception as e:
+        print(f"Got exception: {e}")
+        return None
+
+
+def try_get_code(url):
+    """Returns code of URL if exists in database, else None"""
+    command = """SELECT short FROM urls WHERE full=?;"""
+
+    try:
+        with sqlite3.connect('urls.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute(command, (url,))
+
+            result = cursor.fetchone()
+
+            if result is None:
+                return None
+
+            return result[0]
     except Exception as e:
         print(f"Got exception: {e}")
         return None
