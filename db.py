@@ -1,3 +1,5 @@
+"""Module for working with database"""
+
 import sqlite3
 import os
 
@@ -23,6 +25,7 @@ def __check_table_exists():
 
 
 def get_url(code):
+    """Gets url from database by it's code"""
     command = """SELECT full FROM urls WHERE short=?;"""
 
     try:
@@ -42,6 +45,7 @@ def get_url(code):
 
 
 def add_url(code, url):
+    """Adds pair (code, url) to database"""
     command = """INSERT INTO urls (short, full) VALUES (?, ?);"""
 
     try:
