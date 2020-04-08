@@ -24,24 +24,30 @@ def __check_table_exists():
             pass
 
 
-def get_url(code):
-    """Gets url from database by it's code"""
-    command = """SELECT full FROM urls WHERE short=?;"""
+def __execute_command(command: str, params: tuple):
+    __check_table_exists()
 
     try:
         with sqlite3.connect('urls.db') as conn:
             cursor = conn.cursor()
-            cursor.execute(command, (code,))
+            cursor.execute(command, params)
 
             result = cursor.fetchone()
 
             if result is None:
                 return None
 
-            return result[0]
+            return result
     except Exception as e:
         print(f"Got exception: {e}")
         return None
+
+
+def get_url(code):
+    """Gets url from database by it's code"""
+    command = """SELECT full FROM urls WHERE short=?;"""
+
+    return __execute_command(command, (code,))[0]
 
 
 def add_url(code, url):
@@ -51,7 +57,7 @@ def add_url(code, url):
     try:
         with sqlite3.connect('urls.db') as conn:
             cursor = conn.cursor()
-            cursor.execute(command, (code, url))
+            cursor.execute(command, (code, url,))
         return True
     except Exception as e:
         print(f"Got exception: {e}")
@@ -62,17 +68,4 @@ def try_get_code(url):
     """Returns code of URL if exists in database, else None"""
     command = """SELECT short FROM urls WHERE full=?;"""
 
-    try:
-        with sqlite3.connect('urls.db') as conn:
-            cursor = conn.cursor()
-            cursor.execute(command, (url,))
-
-            result = cursor.fetchone()
-
-            if result is None:
-                return None
-
-            return result[0]
-    except Exception as e:
-        print(f"Got exception: {e}")
-        return None
+    return __execute_command(command, (url,))[0]
