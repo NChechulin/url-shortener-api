@@ -47,7 +47,11 @@ def get_url(code):
     """Gets url from database by it's code"""
     command = """SELECT full FROM urls WHERE short=?;"""
 
-    return __execute_command(command, (code,))[0]
+    result = __execute_command(command, (code,))
+
+    if result is None:
+        return None
+    return result[0]
 
 
 def add_url(code, url):
@@ -67,5 +71,8 @@ def add_url(code, url):
 def try_get_code(url):
     """Returns code of URL if exists in database, else None"""
     command = """SELECT short FROM urls WHERE full=?;"""
+    result = __execute_command(command, (url,))
 
-    return __execute_command(command, (url,))[0]
+    if result is None:
+        return None
+    return result[0]

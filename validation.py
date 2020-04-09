@@ -40,6 +40,12 @@ def validate_url(user_input):
     return (user_input is not None) and (pattern.match(user_input.strip()) is not None)
 
 
-def validate_code(code):
+def validate_code(code, url):
     """returns true if code is not busy"""
-    return (code is not None) and (db.get_url(code.strip()) is None)
+    if code is None:
+        return None
+
+    code = code.strip()
+    url_in_db = db.get_url(code)
+
+    return (url_in_db is None) or (url_in_db == url) 

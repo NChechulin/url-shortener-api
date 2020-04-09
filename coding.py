@@ -18,8 +18,8 @@ def try_encode(user_input):
         url = user_input.strip()
         code = db.try_get_code(url)
 
-        # if code is occupied, generate a new one with different length
-        while not validation.validate_code(code):
+        # if code is occupied by other URL, generate a new one
+        while not validation.validate_code(code, url):
             code = __generate_code(8)
 
         return code
