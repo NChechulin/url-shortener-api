@@ -1,6 +1,6 @@
 ## Ссылки
 
-- English version is available [here](README.md)
+- :us: English version is available [here](README.md)
 - Репозиторий с веб-сайтом, который подключен к API, доступен [здесь](https://github.com/NChechulin/url-shortener-website)
 
 # URL Shortener API
