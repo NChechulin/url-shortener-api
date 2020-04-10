@@ -1,7 +1,7 @@
 ## Links
 
-- :ru: Версия на русском языке доступна [здесь](README-RU.md)
-- Repository which connects to API is available [here](https://github.com/NChechulin/url-shortener-website)
+- :ru: [Версия на русском языке](README-RU.md)
+- [Website which connects to API](https://github.com/NChechulin/url-shortener-website)
 
 # URL Shortener API
 
