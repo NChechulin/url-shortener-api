@@ -1,3 +1,8 @@
+## Ссылки
+
+- Версия на русском языке доступна [здесь](README-RU.md)
+- Repository which connects to API is available [here](https://github.com/NChechulin/url-shortener-website)
+
 # URL Shortener API
 
 Simple API for URL shortener written on Python3 + Flask
