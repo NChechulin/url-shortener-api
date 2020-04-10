@@ -73,7 +73,7 @@ Also you have to created a SQLite database called `urls.db` in directory where `
 
 ### Running
 
-After you did this, you can follow official [documentation](https://flask.palletsprojects.com/en/1.1.x/tutorial/deploy/) to deply the app to production.
+After you did this, you can follow official [documentation](https://flask.palletsprojects.com/en/1.1.x/tutorial/deploy/) to deploy the app to production.
 If you want to run debug version, run:
 
 ```
