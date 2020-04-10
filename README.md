@@ -5,7 +5,7 @@
 
 # URL Shortener API
 
-Simple API for URL shortener written on Python3 + Flask
+Simple API for URL shortener written in Python3 + Flask
 
 ## API Methods
 
